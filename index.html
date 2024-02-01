@@ -500,7 +500,41 @@
         },
         methods: {
           executeJavaScript() {
-      
+            window.openImage = function (imageSrc) {
+    const modal = document.createElement("div");
+    modal.classList.add(
+      "fixed",
+      "top-0",
+      "left-0",
+      "w-screen",
+      "h-screen",
+      "flex",
+      "items-center",
+      "justify-center",
+      "bg-black",
+      "bg-opacity-80",
+      "z-50"
+    );
+
+    const img = document.createElement("img");
+    img.src = imageSrc;
+    img.classList.add(
+      "max-h-screen",
+      "max-w-screen",
+      "rounded-lg",
+      "cursor-pointer",
+      "transition-transform",
+      "transform",
+      "hover:scale-110"
+    );
+
+    img.addEventListener("click", () => {
+      modal.remove();
+    });
+
+    modal.appendChild(img);
+    document.body.appendChild(modal);
+  };
       const toggleNavButton = document.getElementById("nav-button");
       const nav = document.getElementById("nav");
 
@@ -551,41 +585,7 @@
 
       animateText();
 
-      function openImage(imageSrc) {
-        const modal = document.createElement("div");
-        modal.classList.add(
-          "fixed",
-          "top-0",
-          "left-0",
-          "w-screen",
-          "h-screen",
-          "flex",
-          "items-center",
-          "justify-center",
-          "bg-black",
-          "bg-opacity-80",
-          "z-50"
-        );
-
-        const img = document.createElement("img");
-        img.src = imageSrc;
-        img.classList.add(
-          "max-h-screen",
-          "max-w-screen",
-          "rounded-lg",
-          "cursor-pointer",
-          "transition-transform",
-          "transform",
-          "hover:scale-110"
-        );
-
-        img.addEventListener("click", () => {
-          modal.remove();
-        });
-
-        modal.appendChild(img);
-        document.body.appendChild(modal);
-      }
+      
 
       $(document).ready(function () {
         $("#myForm").on("submit", function (event) {
